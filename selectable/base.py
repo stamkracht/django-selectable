@@ -157,4 +157,7 @@ class ModelLookup(LookupBase):
             field_name = re.sub(r'__\w+$', '',  self.search_fields[0])
             if field_name:
                 data = {field_name: value}
-        return self.model(**data)
+        # Force create an object for the lookup data
+        # Since Django 1.8.4 an unsaved instance raises an error
+        obj, _ = self.model.objects.get_or_create(**data)
+        return obj

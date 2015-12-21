@@ -52,7 +52,7 @@ class ModelLookupTestCase(BaseSelectableTestCase):
         thing = lookup.create_item(value)
         self.assertEqual(thing.__class__, Thing)
         self.assertEqual(thing.name, value)
-        self.assertFalse(thing.pk)
+        self.assertEqual(type(thing.pk), int)
 
     def test_get_item(self):
         lookup = self.get_lookup_instance()
