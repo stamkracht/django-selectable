@@ -145,7 +145,7 @@ class ModelLookup(LookupBase):
     def get_item(self, value):
         item = None
         if value:
-            if isinstance(value, self.model.__class__):
+            if isinstance(value, self.model):
                 return value
             try:
                 item = self.get_queryset().get(pk=value)
